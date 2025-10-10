@@ -10,15 +10,16 @@ internal class Linqs
             LinqList.Add(i);
         }
     }
-    public static void Linq1()
+    public static void BakLinq()
     {
         Linqs linqs = new Linqs();
         var evenNumbers = from num in linqs.LinqList
                           where num % 2 == 0
                           select num;
         Console.WriteLine("[" + string.Join(", ", evenNumbers) +"]");
+        int[] evenNumbersList = [.. evenNumbers];
     }
-    public static void Linq2()
+    public static void Linq()
     {
 
     }

@@ -5,7 +5,7 @@ namespace Basic
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            Linqs.Linqs.Linq1();
+            Linqs.Linqs.Linq();
         }
     }
 }
