@@ -2,10 +2,9 @@ namespace Basic
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            Linqs.Linqs.Linq();
+            new Linqs.Linqs().LinqSelect();
         }
     }
 }
