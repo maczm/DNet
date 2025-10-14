@@ -4,7 +4,7 @@ namespace Basic
     {
         public static void Main(string[] args)
         {
-            new Linqs.Linqs().LinqSelect();
+            new Linqs.Linqs().LinqWhere();
         }
     }
 }

@@ -6,7 +6,7 @@ internal class Linqs
 
     public Linqs()
     {
-        for (int i = 1; i < 100; i++)
+        for (int i = 1; i < 5; i++)
         {
             objs.Add(new
             {
@@ -39,8 +39,8 @@ internal class Linqs
         Console.WriteLine("\n");
 
         Console.WriteLine("Linq SelectMany ============================================================================= END");
-        List<int> numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        List<string> letters = ["1a", "2b", "3c", "4d", "5e", "f", "g", "h"];
+        List<int> numbers = [1, 2, 3];
+        List<string> letters = ["1a", "2b", "3c"];
         var crossJoin = numbers.SelectMany(number => letters, (number, letter) => (number, letter));
         Console.WriteLine("[" + string.Join(", ", crossJoin) + "]");
         Console.WriteLine("\n");
@@ -50,5 +50,14 @@ internal class Linqs
         var a = numbers.Zip(letters, emoji);
         Console.WriteLine("[" + string.Join(", ", a) + "]");
         Console.WriteLine("\n");
+    }
+
+    public void LinqWhere()
+    {
+        var obj = objs
+            .Where(x => x.Age % 2 == 0)
+            .SelectMany(obj => objs, (obj, objs) => (obj.Name, objs.Age))
+            .ToList();
+        Console.WriteLine("[" + string.Join(",", obj) + "]");
     }
 }
