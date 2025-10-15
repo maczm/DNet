@@ -1,6 +1,6 @@
-namespace Basic.MyLinq;
+namespace Basic.MyLinq.Models;
 
-internal class Data
+public class Data
 {
     public required List<string> Flowers { get; init; }
 }
