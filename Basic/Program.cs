@@ -7,17 +7,18 @@ public class Program
     public static void Main(string[] args)
     {
         string[] menuItems =
-        {
+        [
             "1：MyWhere",
             "2：MyZip",
             "3：MySelectMany",
-            "4：MySelect"
-        };
+            "4：MySelect",
+            "5：MyDistinct"
+        ];
         var selectedIndex = 0;
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("请选择要运行的函数（方向键选择，回车执行）：\n");
+            Console.WriteLine("请选择要运行的函数（方向键选择，回车执行，按 Q/Esc 退出）：\n");
             for (var i = 0; i < menuItems.Length; i++)
                 if (i == selectedIndex)
                 {
@@ -56,10 +57,20 @@ public class Program
                     case 3:
                         MySelect.FuncSelect();
                         break;
+                    case 4:
+                        MyDistinct.FuncDistinct();
+                        break;
                 }
 
                 Console.WriteLine("\n按任意键返回菜单...");
                 Console.ReadKey(true);
+            }
+            else if (key.KeyChar is 'q' or 'Q' || key.Key == ConsoleKey.Escape)
+            {
+                Console.Clear();
+                Console.WriteLine("程序已退出，再见！");
+                Thread.Sleep(1000); // 等待1秒后退出，让用户看到退出消息
+                break;
             }
         }
     }

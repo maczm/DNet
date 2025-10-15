@@ -4,7 +4,7 @@ internal static class MySelectMany
 {
     public static void FuncSelectMany()
     {
-        Console.WriteLine("Linq SelectMany ============================================================================= END");
+        Console.WriteLine("展开花朵列表：");
         List<Data> data =
         [
             new() { Flowers = ["sunflower", "daisy"] },
@@ -22,7 +22,9 @@ internal static class MySelectMany
 
         List<int> numbers = [1, 2, 3];
         List<string> letters = ["1a", "2b", "3c"];
-        var numbersSelectMany = numbers.SelectMany(number => letters, (number, letter) => (number, letter)).ToList();
+        var numbersSelectMany = numbers
+            .SelectMany(number => letters, (number, letter) => (number, letter))
+            .ToList();
         numbersSelectMany.ForEach(x => Console.WriteLine($"({x.number}, {x.letter})"));
     }
 }
