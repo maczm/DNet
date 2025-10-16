@@ -7,6 +7,7 @@ public class MyExceptBy
     
     public void FuncExceptBy()
     {
+        Console.WriteLine("Except扩展");
         var dataExceptBy = _words1.ExceptBy(_words2, word => word).ToList();
         dataExceptBy.ForEach(Console.WriteLine);
     }

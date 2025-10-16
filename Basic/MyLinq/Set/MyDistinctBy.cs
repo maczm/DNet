@@ -6,7 +6,7 @@ public class MyDistinctBy
     
     public void FuncDistinctBy()
     {
-        Console.WriteLine("根据字符长度去重：");
+        Console.WriteLine("Distinct扩展：");
         var distinctByWords = _words.DistinctBy(w => w.Length).ToList();
         distinctByWords.ForEach(Console.WriteLine);
     }

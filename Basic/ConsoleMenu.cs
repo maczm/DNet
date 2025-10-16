@@ -8,14 +8,18 @@ public class ConsoleMenu
 {
     private readonly string[] _menuItems =
     [
-        "1：MyWhere",
-        "2：MyZip",
-        "3：MySelectMany",
-        "4：MySelect",
-        "5：MyDistinct",
-        "6：MyDistinctBy",
-        "7：MyExcept",
-        "8：MyExceptBy"
+        "MyWhere",
+        "MyZip",
+        "MySelectMany",
+        "MySelect",
+        "MyDistinct",
+        "MyDistinctBy",
+        "MyExcept",
+        "MyExceptBy",
+        "MyIntersect",
+        "MyIntersectBy",
+        "MyUnion",
+        "MyUnionBy"
     ];
 
     private int _selectedIndex;
@@ -75,6 +79,18 @@ public class ConsoleMenu
                         break;
                     case 7:
                         new MyExceptBy().FuncExceptBy();
+                        break;
+                    case 8:
+                        new MyIntersect().FuncIntersect();
+                        break;
+                    case 9:
+                        new MyIntersectBy().FuncIntersectBy();
+                        break;
+                    case 10:
+                        new MyUnion().FuncUnion();
+                        break;
+                    case 11:
+                        new MyUnionBy().FuncUnionBy();
                         break;
                 }
 

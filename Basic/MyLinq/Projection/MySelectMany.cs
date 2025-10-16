@@ -4,22 +4,17 @@ namespace Basic.MyLinq.Projection;
 
 public class MySelectMany
 {
-    private readonly List<Data> _data = [];
+    private readonly List<Data> _data =
+    [
+        new() { Flowers = ["sunflower", "daisy"] },
+        new() { Flowers = ["tulip", "rose"] },
+        new() { Flowers = ["lily"] },
+        new() { Flowers = ["larkspur", "lilac"] }
+    ];
     private readonly List<string> _phrases = ["an apple a day", "the quick brown fox"];
     private readonly List<int> _numbers = [1, 2, 3];
     private readonly List<string> _letters = ["1a", "2b", "3c"];
 
-    public MySelectMany()
-    {
-        _data =
-        [
-            new() { Flowers = ["sunflower", "daisy"] },
-            new() { Flowers = ["tulip", "rose"] },
-            new() { Flowers = ["lily"] },
-            new() { Flowers = ["larkspur", "lilac"] }
-        ];
-    }
-    
     public void FuncSelectMany()
     {
         Console.WriteLine("展开花朵列表：");
