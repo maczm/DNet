@@ -4,6 +4,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        new ConsoleMenu().FuncConsoleMenu();
+        var menu = new ConsoleMenu();
+        menu.FuncConsoleMenu();
     }
 }

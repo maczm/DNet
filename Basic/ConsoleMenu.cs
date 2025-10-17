@@ -1,109 +1,104 @@
 using Basic.MyLinq.Filter;
 using Basic.MyLinq.Projection;
 using Basic.MyLinq.Set;
+using Basic.MyLinq.Sort;
 
 namespace Basic;
 
 public class ConsoleMenu
 {
-    private readonly string[] _menuItems =
-    [
-        "MyWhere",
-        "MyZip",
-        "MySelectMany",
-        "MySelect",
-        "MyDistinct",
-        "MyDistinctBy",
-        "MyExcept",
-        "MyExceptBy",
-        "MyIntersect",
-        "MyIntersectBy",
-        "MyUnion",
-        "MyUnionBy"
-    ];
-
+    private readonly Dictionary<string, Action> _menuItems;
     private int _selectedIndex;
+    private readonly string[] _menuKeys;
+
+    public ConsoleMenu()
+    {
+        _menuItems = new Dictionary<string, Action>
+        {
+            ["MyWhere"] = () => new MyWhere().FuncWhere(),
+            ["MyZip"] = () => new MyZip().FuncZip(),
+            ["MySelectMany"] = () => new MySelectMany().FuncSelectMany(),
+            ["MySelect"] = () => new MySelect().FuncSelect(),
+            ["MyDistinct"] = () => new MyDistinct().FuncDistinct(),
+            ["MyDistinctBy"] = () => new MyDistinctBy().FuncDistinctBy(),
+            ["MyExcept"] = () => new MyExcept().FuncExcept(),
+            ["MyExceptBy"] = () => new MyExceptBy().FuncExceptBy(),
+            ["MyIntersect"] = () => new MyIntersect().FuncIntersect(),
+            ["MyIntersectBy"] = () => new MyIntersectBy().FuncIntersectBy(),
+            ["MyUnion"] = () => new MyUnion().FuncUnion(),
+            ["MyUnionBy"] = () => new MyUnionBy().FuncUnionBy(),
+            ["MyOrderBy"] = () => new MyOrderBy().FuncOrderBy(),
+            ["MyOrderByDescending"] = () => new MyOrderByDescending().FuncOrderByDescending(),
+        };
+        
+        _menuKeys = _menuItems.Keys.ToArray();
+    }
 
     public void FuncConsoleMenu()
     {
         while (true)
         {
-            Console.Clear();
-            Console.WriteLine("请选择要运行的函数（方向键选择，回车执行，按 Q/Esc 退出）：\n");
-            for (var i = 0; i < _menuItems.Length; i++)
-                if (i == _selectedIndex)
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"> {_menuItems[i]}");
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.WriteLine($"  {_menuItems[i]}");
-                }
-
+            DisplayMenu();
+            
             var key = Console.ReadKey(true);
-            if (key.Key == ConsoleKey.UpArrow)
-            {
-                _selectedIndex = (_selectedIndex - 1 + _menuItems.Length) % _menuItems.Length;
-            }
-            else if (key.Key == ConsoleKey.DownArrow)
-            {
-                _selectedIndex = (_selectedIndex + 1) % _menuItems.Length;
-            }
-            else if (key.Key == ConsoleKey.Enter)
-            {
-                Console.Clear();
-                switch (_selectedIndex)
-                {
-                    case 0:
-                        new MyWhere().FuncWhere();
-                        break;
-                    case 1:
-                        new MyZip().FuncZip();
-                        break;
-                    case 2:
-                        new MySelectMany().FuncSelectMany();
-                        break;
-                    case 3:
-                        new MySelect().FuncSelect();
-                        break;
-                    case 4:
-                        new MyDistinct().FuncDistinct();
-                        break;
-                    case 5:
-                        new MyDistinctBy().FuncDistinctBy();
-                        break;
-                    case 6:
-                        new MyExcept().FuncExcept();
-                        break;
-                    case 7:
-                        new MyExceptBy().FuncExceptBy();
-                        break;
-                    case 8:
-                        new MyIntersect().FuncIntersect();
-                        break;
-                    case 9:
-                        new MyIntersectBy().FuncIntersectBy();
-                        break;
-                    case 10:
-                        new MyUnion().FuncUnion();
-                        break;
-                    case 11:
-                        new MyUnionBy().FuncUnionBy();
-                        break;
-                }
-
-                Console.WriteLine("\n按任意键返回菜单...");
-                Console.ReadKey(true);
-            }
-            else if (key.KeyChar is 'q' or 'Q' || key.Key == ConsoleKey.Escape)
-            {
-                Console.Clear();
-                Console.WriteLine("程序已退出，再见！");
-                Thread.Sleep(1000); // 等待1秒后退出，让用户看到退出消息
+            if (!HandleInput(key))
                 break;
+        }
+    }
+    
+    private void DisplayMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("请选择要运行的函数（方向键选择，回车执行，按 Q/Esc 退出）：\n");
+        
+        for (var i = 0; i < _menuKeys.Length; i++)
+        {
+            if (i == _selectedIndex)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"> {_menuKeys[i]}");
+                Console.ResetColor();
+            }
+            else
+            {
+                Console.WriteLine($"  {_menuKeys[i]}");
             }
         }
+    }
+    
+    private bool HandleInput(ConsoleKeyInfo key)
+    {
+        switch (key.Key)
+        {
+            case ConsoleKey.UpArrow:
+                _selectedIndex = (_selectedIndex - 1 + _menuKeys.Length) % _menuKeys.Length;
+                return true;
+                
+            case ConsoleKey.DownArrow:
+                _selectedIndex = (_selectedIndex + 1) % _menuKeys.Length;
+                return true;
+                
+            case ConsoleKey.Enter:
+                ExecuteSelectedAction();
+                return true;
+                
+            case ConsoleKey.Q:
+            case ConsoleKey.Escape:
+                Console.Clear();
+                Console.WriteLine("程序已退出，再见！");
+                Thread.Sleep(1000);
+                return false;
+                
+            default:
+                return true;
+        }
+    }
+    
+    private void ExecuteSelectedAction()
+    {
+        Console.Clear();
+        _menuItems[_menuKeys[_selectedIndex]]();
+        Console.WriteLine("\n按任意键返回菜单...");
+        Console.ReadKey(true);
     }
 }

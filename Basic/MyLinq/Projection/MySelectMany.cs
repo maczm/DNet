@@ -11,9 +11,10 @@ public class MySelectMany
         new() { Flowers = ["lily"] },
         new() { Flowers = ["larkspur", "lilac"] }
     ];
-    private readonly List<string> _phrases = ["an apple a day", "the quick brown fox"];
-    private readonly List<int> _numbers = [1, 2, 3];
+
     private readonly List<string> _letters = ["1a", "2b", "3c"];
+    private readonly List<int> _numbers = [1, 2, 3];
+    private readonly List<string> _phrases = ["an apple a day", "the quick brown fox"];
 
     public void FuncSelectMany()
     {

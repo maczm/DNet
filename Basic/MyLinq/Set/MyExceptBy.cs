@@ -4,7 +4,7 @@ public class MyExceptBy
 {
     private readonly string[] _words1 = ["the", "quick", "brown", "fox"];
     private readonly string[] _words2 = ["jumped", "over", "the", "lazy", "dog"];
-    
+
     public void FuncExceptBy()
     {
         Console.WriteLine("Except扩展");

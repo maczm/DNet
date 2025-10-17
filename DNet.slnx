@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="AspCore\AspCore.csproj" Type="Classic C#" />
-  <Project Path="Basic/Basic.csproj" />
+    <Project Path="AspCore\AspCore.csproj" Type="Classic C#"/>
+    <Project Path="Basic/Basic.csproj"/>
 </Solution>

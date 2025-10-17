@@ -3,7 +3,7 @@ namespace Basic.MyLinq.Projection;
 public class MySelect
 {
     private readonly List<dynamic> _data = [];
-    
+
     public MySelect()
     {
         for (var i = 1; i < 5; i++)
@@ -14,7 +14,7 @@ public class MySelect
                 Age = i
             });
     }
-    
+
     public void FuncSelect()
     {
         Console.WriteLine("选择数据对象：");

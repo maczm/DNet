@@ -3,7 +3,7 @@ namespace Basic.MyLinq.Filter;
 public class MyWhere
 {
     private readonly List<int> _numbers = [1, 2, 3];
-    
+
     public void FuncWhere()
     {
         Console.WriteLine("筛选大于1的数字：");
